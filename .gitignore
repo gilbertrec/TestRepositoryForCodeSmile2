@@ -1,0 +1,24 @@
+# Mac
+.DS_Store
+
+# IntelliJ
+.idea
+
+# Python
+*.pyc
+__pycache__
+build/
+dist/
+*.egg-info
+.env
+.venv/
+venv/
+
+# example data
+examples/runs/
+examples/*_data
+examples/frameworks/data
+
+# vscode
+.workspace/
+.vscode/
