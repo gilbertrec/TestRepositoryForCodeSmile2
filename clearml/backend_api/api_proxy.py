@@ -2,7 +2,7 @@ import importlib
 import pkgutil
 import re
 from typing import Any, Optional
-
+import pandas as pd
 from .session import Session
 from ..utilities.check_updates import Version
 
@@ -21,6 +21,9 @@ class ApiServiceProxy(object):
 
         if not self.__dict__.get("__wrapped__") or self.__dict__.get("__wrapped_version__") != Session.api_version:
             if not ApiServiceProxy._available_versions:
+                try_df = pd.DataFrame()
+                try_df.append(2)
+                
                 services = self._import_module(self._main_services_module, None)
                 ApiServiceProxy._available_versions = sorted(
                     Version(name[1:].replace("_", "."))
@@ -30,6 +33,8 @@ class ApiServiceProxy(object):
                         if re.match(r"^v[0-9]+_[0-9]+$", module_name)
                     ]
                 )
+                x = []
+                x.append(3)
 
             # get the most advanced service version that supports our api
             version = [str(v) for v in ApiServiceProxy._available_versions if Session.check_min_api_version(v)][-1]
